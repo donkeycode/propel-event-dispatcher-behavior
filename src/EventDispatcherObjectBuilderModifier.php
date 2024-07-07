@@ -27,9 +27,9 @@ class EventDispatcherObjectBuilderModifier
             $events[$constant] = $this->getEventName($eventName);
         }
 
-        return $this->behavior->renderTemplate('objectAttributes', array(
+        return $this->behavior->renderTemplate('objectAttributes.php', array(
             'events' => $events,
-        ));
+        ), '../templates/');
     }
 
     public function objectMethods($builder)
@@ -50,91 +50,91 @@ class EventDispatcherObjectBuilderModifier
     {
         $builder->declareClass('Symfony\Component\EventDispatcher\EventDispatcher');
 
-        return $this->behavior->renderTemplate('objectGetEventDispatcher');
+        return $this->behavior->renderTemplate('objectGetEventDispatcher.php', [], '../templates/');
     }
 
     public function addSetEventDispatcher($builder)
     {
         $builder->declareClass('Symfony\Component\EventDispatcher\EventDispatcherInterface');
 
-        return $this->behavior->renderTemplate('objectSetEventDispatcher');
+        return $this->behavior->renderTemplate('objectSetEventDispatcher.php', [], '../templates/');
     }
 
     public function addDummyConstruct()
     {
-        return $this->behavior->renderTemplate('objectDummyConstruct');
+        return $this->behavior->renderTemplate('objectDummyConstruct.php', [], '../templates/');
     }
 
     public function addConstructHook()
     {
-        return '    ' . $this->behavior->renderTemplate('objectHook', array(
+        return '    ' . $this->behavior->renderTemplate('objectHook.php', array(
             'eventName'      => $this->getEventName('construct'),
             'withConnection' => false,
-        )) . '    ';
+        ), '../templates/') . '    ';
     }
 
     public function preSave()
     {
-        return $this->behavior->renderTemplate('objectHook', array(
+        return $this->behavior->renderTemplate('objectHook.php', array(
             'eventName'      => $this->getEventName('pre_save'),
             'withConnection' => true,
-        ));
+        ), '../templates/');
     }
 
     public function postSave()
     {
-        return $this->behavior->renderTemplate('objectHook', array(
+        return $this->behavior->renderTemplate('objectHook.php', array(
             'eventName'      => $this->getEventName('post_save'),
             'withConnection' => true,
-        ));
+        ), '../templates/');
     }
 
     public function preUpdate()
     {
-        return $this->behavior->renderTemplate('objectHook', array(
+        return $this->behavior->renderTemplate('objectHook.php', array(
             'eventName'      => $this->getEventName('pre_update'),
             'withConnection' => true,
-        ));
+        ), '../templates/');
     }
 
     public function postUpdate()
     {
-        return $this->behavior->renderTemplate('objectHook', array(
+        return $this->behavior->renderTemplate('objectHook.php', array(
             'eventName'      => $this->getEventName('post_update'),
             'withConnection' => true,
-        ));
+        ), '../templates/');
     }
 
     public function preInsert()
     {
-        return $this->behavior->renderTemplate('objectHook', array(
+        return $this->behavior->renderTemplate('objectHook.php', array(
             'eventName'      => $this->getEventName('pre_insert'),
             'withConnection' => true,
-        ));
+        ), '../templates/');
     }
 
     public function postInsert()
     {
-        return $this->behavior->renderTemplate('objectHook', array(
+        return $this->behavior->renderTemplate('objectHook.php', array(
             'eventName'      => $this->getEventName('post_insert'),
             'withConnection' => true,
-        ));
+        ), '../templates/');
     }
 
     public function preDelete()
     {
-        return $this->behavior->renderTemplate('objectHook', array(
+        return $this->behavior->renderTemplate('objectHook.php', array(
             'eventName'      => $this->getEventName('pre_delete'),
             'withConnection' => true,
-        ));
+        ), '../templates/');
     }
 
     public function postDelete()
     {
-        return $this->behavior->renderTemplate('objectHook', array(
+        return $this->behavior->renderTemplate('objectHook.php', array(
             'eventName'      => $this->getEventName('post_delete'),
             'withConnection' => true,
-        ));
+        ), '../templates/');
     }
 
     public function objectFilter(&$script)
